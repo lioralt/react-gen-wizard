@@ -34,18 +34,17 @@ export default class Wizard extends React.Component {
   }
 
   onNextEnded(data) {
-    if (this.state.currentComponentIndex === this.props.components.length - 1) {
-      this.state = {currentComponentIndex: 0,
-                    maxComponentIndexReached: 0,
-                    data: this._originalData};
-      this.props.onFinish(this.state.data);
-      this.setState(this.state);
-    } else {
-      this.state.currentComponentIndex++;
-      this.state.maxComponentIndexReached++;
-      this.state.data = data;
-      this.setState(this.state);
-    }
+        this.state.currentComponentIndex++;
+        this.state.maxComponentIndexReached++;
+        this.state.data = data;
+        this.setState(this.state);
+	  if (this.state.currentComponentIndex === this.props.components.length) {
+		this.props.onFinish(this.state.data);
+        this.state = { currentComponentIndex: 0,
+          maxComponentIndexReached: 0,
+          data: this._originalData };
+		  this.setState(this.state);
+      }
   }
 
   onPrevEnded(data) {
@@ -54,12 +53,22 @@ export default class Wizard extends React.Component {
     this.setState(this.state);
   }
 
+ _getComponentInstance() {
+    if (this.refs.currentComponent.onNext) {
+      return this.refs.currentComponent
+    } else if (this.refs.currentComponent.getWrappedInstance) { // Patch for working with redux's connect
+      return this.refs.currentComponent.getWrappedInstance()
+    }
+
+    return null
+  }
+
   _callOnNext() {
-    this.refs.currentComponent.onNext();
+    this._getComponentInstance().onNext();
   }
 
   _callOnPrev() {
-    this.refs.currentComponent.onPrev();
+    this._getComponentInstance().onPrev();
   }
 
   render () {
