@@ -6,7 +6,7 @@ Generic react component for creating wizards, and passing arbitrary data between
 
 ## Installation ##
 ```
-npm install react-gen-wizard
+npm install react-gen-wizard-watson
 ```
 
 ## How to use ##
