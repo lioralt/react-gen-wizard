@@ -53,6 +53,13 @@ export default class Wizard extends React.Component {
     this.setState(this.state);
   }
 
+ onReset() {
+      this.setState({ currentComponentIndex: 0,
+          maxComponentIndexReached: 0,
+          data: this._originalData }
+          );
+ }
+
  _getComponentInstance() {
     if (this.refs.currentComponent.onNext) {
       return this.refs.currentComponent

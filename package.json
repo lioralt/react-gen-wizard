@@ -1,5 +1,5 @@
 {
-  "name": "react-gen-wizard",
+  "name": "react-gen-wizard-watson",
   "version": "0.0.10",
   "description": "Generic react component for creating wizards, and passing data between steps",
   "main": "main.js",
@@ -8,13 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/omerts/react-gen-wizard.git"
+    "url": "https://github.com/lioralt/react-gen-wizard-watson.git"
   },
   "keywords": [
     "react",
     "wizard"
   ],
-  "author": "Omer Spalter",
+  "author": "Lior Altman",
   "license": "ISC",
   "peerDependencies": {
     "react": "^0.14.3"
